@@ -42,11 +42,13 @@ def data_normalizer(train_data, test_data):
 df = pd.read_csv(r'C:\Users\Fede\Documents\GitHub\TensorFlow-Pokemon-Course\Project_files\pokemonez.csv')
 
 df = df[['isLegendary','Generation', 'Type_1', 'Type_2', 'HP', 'Attack', 'Defense', 'Sp_Atk', 'Sp_Def', 'Speed','Color','Egg_Group_1','Height_m','Weight_kg','Body_Style']]
+col_names=df.columns
 
 #transform it to a useful data type
 
 df = dummy_creation(df, ['isLegendary'])
 df = dummy_creation(df, ['Egg_Group_1', 'Body_Style', 'Color','Type_1', 'Type_2'])
+df.rename(dict(zip(list(df.columns), col_names)), inplace=True,axis=1)
 
 #split the data
 
